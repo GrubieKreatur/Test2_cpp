@@ -1,25 +1,25 @@
-//
-// Created by scsch on 27.02.2025.
-//
-
-// Game.h
 #ifndef GAME_H
 #define GAME_H
 
-#include <array>
+#include <SFML/Graphics.hpp>
+#include "Bot.h"
 
 class Game {
 public:
     Game();
-    void reset(); // Spiel zurücksetzen
-    bool makeMove(int row, int col, char player); // Zug machen
-    bool checkWinner(char player); // Überprüfen ob der Spieler gewonnen hat
-    bool isFull(); // Überprüfen ob das Spielfeld voll ist
-    const std::array<std::array<char, 3>, 3>& getBoard() const;  // Konstante Methode, gibt konstante Referenz zurück
-
+    void reset();
+    void playMultiplayer(sf::RenderWindow& window);
+    void playAgainstBot(sf::RenderWindow& window, bool easy, bool hard);
 private:
-    std::array<std::array<char, 3>, 3> board;
+    // Tic-Tac-Toe grid
+    int board[3][3];
+    bool isPlayerX;
+    bool gameOver;
+
+    // Methods for drawing the grid and checking for a winner
+    void drawBoard(sf::RenderWindow& window);
+    bool checkWinner();
+    void handleInput(sf::RenderWindow& window);
 };
 
-#endif
- //TEST2_CPP_GAME_H
+#endif // GAME_H

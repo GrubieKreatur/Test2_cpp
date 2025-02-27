@@ -1,38 +1,38 @@
-// main.cpp
-#include "./SFML-3.0.0/include/SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
+#include "GUI.h"
 #include "Game.h"
 #include "Bot.h"
-#include "GUI.h"
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(300, 400), "Tic Tac Toe");
+    sf::RenderWindow window(sf::VideoMode(600, 600), "Tic-Tac-Toe");
+
+    GUI gui(window);
     Game game;
-    GUI gui;
-    Bot bot('O');
-    bool isHard = true; // Schwieriger Schwierigkeitsgrad
-    bool isPlayerTurn = true; // Wahr für den Spieler, falsch für den Bot
+    Bot bot;
+
+    bool multiplayerMode = false;
+    bool botEasy = false;
+    bool botHard = false;
 
     while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window.close();
-            gui.handleMouseClick(event, game);
+        // Main menu for selecting game mode
+        if (gui.showMainMenu()) {
+            multiplayerMode = gui.isMultiplayerSelected();
+            botEasy = gui.isBotEasySelected();
+            botHard = gui.isBotHardSelected();
         }
 
-        if (!game.isFull() && !game.checkWinner('X') && !game.checkWinner('O')) {
-            if (isPlayerTurn) {
-                gui.drawBoard(window, game);
-            } else {
-                auto move = bot.getMove(game, isHard);
-                game.makeMove(move.first, move.second, 'O');
-                isPlayerTurn = !isPlayerTurn;
-                gui.drawBoard(window, game);
-            }
+        game.reset(); // Reset the game for each round
+
+        if (multiplayerMode) {
+            game.playMultiplayer(window);
         } else {
-            char winner = game.checkWinner('X') ? 'X' : (game.checkWinner('O') ? 'O' : ' ');
-            gui.displayWinner(window, winner);
+            game.playAgainstBot(window, botEasy, botHard);
         }
+
+        window.clear();
+        gui.draw(window);
+        window.display();
     }
 
     return 0;
