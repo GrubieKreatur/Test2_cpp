@@ -1,3 +1,5 @@
 # ninja log v5
 2	198	7623623450528885	build.ninja	54fe7334fee74dc5
 6	215	7623623278964631	CMakeFiles/Test2_cpp.dir/Game.cpp.obj	c8488080eb987d88
+2	365	7623626857420675	CMakeFiles/Test2_cpp.dir/Game.cpp.obj	c8488080eb987d88
+26	405	7623626857770693	CMakeFiles/Test2_cpp.dir/Bot.cpp.obj	d5e549de55fea0ad

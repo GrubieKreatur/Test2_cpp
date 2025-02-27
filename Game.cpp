@@ -1,7 +1,6 @@
 //
 // Created by scsch on 27.02.2025.
 //
-
 // Game.cpp
 #include "Game.h"
 
@@ -43,7 +42,8 @@ bool Game::isFull() {
     return true;
 }
 
-std::array<std::array<char, 3>, 3>& Game::getBoard() {
+const std::array<std::array<char, 3>, 3>& Game::getBoard() const {
     return board;
 }
+
 
