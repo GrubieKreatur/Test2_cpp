@@ -6,53 +6,85 @@
 #include "GUI.h"
 #include "./SFML-3.0.0/include/SFML/Graphics.hpp"
 
-GUI::GUI() {
-    font.loadFromFile("arial.ttf");
-    text.setFont(font);
-    text.setCharacterSize(24);
-}
+GUI::GUI(sf::RenderWindow& window) : window(window) {}
 
-void GUI::drawBoard(sf::RenderWindow& window, const Game& game) {
-    window.clear(sf::Color::White);
-    const auto& board = game.getBoard();
-    for (int row = 0; row < 3; ++row) {
-        for (int col = 0; col < 3; ++col) {
-            sf::RectangleShape square(sf::Vector2f(100.f, 100.f));
-            square.setPosition(col * 100.f, row * 100.f);
-            square.setOutlineColor(sf::Color::Black);
-            square.setOutlineThickness(2.f);
-            if (board[row][col] == 'X') {
-                square.setFillColor(sf::Color::Red);
-            } else if (board[row][col] == 'O') {
-                square.setFillColor(sf::Color::Blue);
-            } else {
-                square.setFillColor(sf::Color::White);
+bool GUI::showMainMenu() {
+    // Simple logic for handling user input on the main menu
+    sf::Font font;
+    if (!font.loadFromFile("Arial.ttf")) {
+        std::cerr << "Failed to load font!" << std::endl;
+    }
+
+    sf::Text title("Tic-Tac-Toe", font, 50);
+    title.setPosition(200, 50);
+    title.setFillColor(sf::Color::Black);
+
+    sf::Text multiplayerButton("Multiplayer", font, 30);
+    multiplayerButton.setPosition(250, 150);
+    multiplayerButton.setFillColor(sf::Color::Black);
+
+    sf::Text botEasyButton("Bot (Easy)", font, 30);
+    botEasyButton.setPosition(250, 200);
+    botEasyButton.setFillColor(sf::Color::Black);
+
+    sf::Text botHardButton("Bot (Hard)", font, 30);
+    botHardButton.setPosition(250, 250);
+    botHardButton.setFillColor(sf::Color::Black);
+
+    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+    sf::Event event;
+    if (botHardButton.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
+        botHardButton.setFillColor(sf::Color(150, 150, 255)); // Hover-Effekt
+
+        // Prüfen, ob die linke Maustaste gedrückt wurde
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            std::cout << "Button wurde geklickt!" << std::endl;
+        }
+    } else {
+        botHardButton.setFillColor(sf::Color(100, 100, 250)); // Zurück zur Standardfarbe
+    }
+
+
+        if (event.type == sf::Event::MouseButtonPressed) {
+            sf::Vector2i mousePos = sf::Mouse::getPosition(window); // Mausposition im Fenster
+
+            if (multiplayerButton.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
+                std::cout << "Multiplayer-Modus ausgewählt!" << std::endl;
             }
-            window.draw(square);
-
-            if (board[row][col] != ' ') {
-                text.setString(std::string(1, board[row][col]));
-                text.setPosition(col * 100.f + 30.f, row * 100.f + 30.f);
-                window.draw(text);
+            if (botEasyButton.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
+                std::cout << "Bot (Easy) Modus ausgewählt!" << std::endl;
+            }
+            if (botHardButton.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
+                std::cout << "Bot (Hard) Modus ausgewählt!" << std::endl;
             }
         }
-    }
+
+
+
+    window.clear(sf::Color::White);
+    window.draw(title);
+    window.draw(multiplayerButton);
+    window.draw(botEasyButton);
+    window.draw(botHardButton);
     window.display();
+
+    return true;
 }
 
-void GUI::handleMouseClick(const sf::Event& event, Game& game) {
-    if (event.type == sf::Event::MouseButtonPressed) {
-        int col = event.mouseButton.x / 100;
-        int row = event.mouseButton.y / 100;
-        game.makeMove(row, col, 'X'); // Beispiel für Spieler X
-    }
+bool GUI::isMultiplayerSelected() {
+    return false; // Always multiplayer for testing, modify to check input
 }
 
-void GUI::displayWinner(sf::RenderWindow& window, char winner) {
-    text.setString(std::string(1, winner) + " wins!");
-    text.setPosition(100.f, 320.f);
-    window.draw(text);
-    window.display();
+bool GUI::isBotEasySelected() {
+    return false; // Always easy bot for testing, modify to check input
 }
+
+bool GUI::isBotHardSelected() {
+    return false; // Always hard bot for testing, modify to check input
+}
+
+void GUI::draw(sf::RenderWindow& window) {
+    // Empty for now, just used to draw buttons or background
+    showMainMenu();
 
 }

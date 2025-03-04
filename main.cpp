@@ -1,16 +1,22 @@
-// main.cpp
-#include "./SFML-3.0.0/include/SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
+#include <iostream>
+#include "GUI.h"
 #include "Game.h"
 #include "Bot.h"
 #include "GUI.h"
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(300, 400), "Tic Tac Toe");
+    sf::RenderWindow window(sf::VideoMode(800 , 450 ), "Tic-Tac-Toe");
+
+    GUI gui(window);
     Game game;
-    GUI gui;
-    Bot bot('O');
-    bool isHard = true; // Schwieriger Schwierigkeitsgrad
-    bool isPlayerTurn = true; // Wahr für den Spieler, falsch für den Bot
+    Bot bot;
+
+
+    bool multiplayerMode = false;
+    bool botEasy = false;
+    bool botHard = false;
+    int textStandartGrose = 45;
 
     while (window.isOpen()) {
         sf::Event event;
