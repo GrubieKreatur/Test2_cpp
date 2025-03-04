@@ -11,11 +11,13 @@
 
 class GUI {
 public:
-    GUI();
-    void drawBoard(sf::RenderWindow& window, const Game& game);
-    void handleMouseClick(const sf::Event& event, Game& game);
-    void displayWinner(sf::RenderWindow& window, char winner);
 
+    GUI(sf::RenderWindow& window);
+    bool showMainMenu();
+    bool isMultiplayerSelected();
+    bool isBotEasySelected();
+    bool isBotHardSelected();
+    void draw(sf::RenderWindow& window, int* textStandartGrose);
 private:
     sf::Font font;
     sf::Text text;

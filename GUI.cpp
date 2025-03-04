@@ -55,3 +55,4 @@ void GUI::displayWinner(sf::RenderWindow& window, char winner) {
     window.display();
 }
 
+}
