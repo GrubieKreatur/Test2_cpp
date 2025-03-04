@@ -56,22 +56,29 @@ build CMakeFiles/Test2_cpp.dir/main.cpp.obj: CXX_COMPILER__Test2_cpp_unscanned_D
   OBJECT_DIR = CMakeFiles\Test2_cpp.dir
   OBJECT_FILE_DIR = CMakeFiles\Test2_cpp.dir
 
-build CMakeFiles/Test2_cpp.dir/Game.cpp.obj: CXX_COMPILER__Test2_cpp_unscanned_Debug D$:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/Game.cpp || cmake_object_order_depends_target_Test2_cpp
-  DEP_FILE = CMakeFiles\Test2_cpp.dir\Game.cpp.obj.d
+build CMakeFiles/Test2_cpp.dir/MainMenue.cpp.obj: CXX_COMPILER__Test2_cpp_unscanned_Debug D$:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/MainMenue.cpp || cmake_object_order_depends_target_Test2_cpp
+  DEP_FILE = CMakeFiles\Test2_cpp.dir\MainMenue.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -ID:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/./SFML-2.6.2/include -isystem D:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/SFML-2.6.2/include
   OBJECT_DIR = CMakeFiles\Test2_cpp.dir
   OBJECT_FILE_DIR = CMakeFiles\Test2_cpp.dir
 
-build CMakeFiles/Test2_cpp.dir/Bot.cpp.obj: CXX_COMPILER__Test2_cpp_unscanned_Debug D$:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/Bot.cpp || cmake_object_order_depends_target_Test2_cpp
-  DEP_FILE = CMakeFiles\Test2_cpp.dir\Bot.cpp.obj.d
+build CMakeFiles/Test2_cpp.dir/TicTacToeAnsicht.cpp.obj: CXX_COMPILER__Test2_cpp_unscanned_Debug D$:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/TicTacToeAnsicht.cpp || cmake_object_order_depends_target_Test2_cpp
+  DEP_FILE = CMakeFiles\Test2_cpp.dir\TicTacToeAnsicht.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -ID:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/./SFML-2.6.2/include -isystem D:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/SFML-2.6.2/include
   OBJECT_DIR = CMakeFiles\Test2_cpp.dir
   OBJECT_FILE_DIR = CMakeFiles\Test2_cpp.dir
 
-build CMakeFiles/Test2_cpp.dir/GUI.cpp.obj: CXX_COMPILER__Test2_cpp_unscanned_Debug D$:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/GUI.cpp || cmake_object_order_depends_target_Test2_cpp
-  DEP_FILE = CMakeFiles\Test2_cpp.dir\GUI.cpp.obj.d
+build CMakeFiles/Test2_cpp.dir/NormalBotSpieler.cpp.obj: CXX_COMPILER__Test2_cpp_unscanned_Debug D$:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/NormalBotSpieler.cpp || cmake_object_order_depends_target_Test2_cpp
+  DEP_FILE = CMakeFiles\Test2_cpp.dir\NormalBotSpieler.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/./SFML-2.6.2/include -isystem D:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/SFML-2.6.2/include
+  OBJECT_DIR = CMakeFiles\Test2_cpp.dir
+  OBJECT_FILE_DIR = CMakeFiles\Test2_cpp.dir
+
+build CMakeFiles/Test2_cpp.dir/HardBotSpieler.cpp.obj: CXX_COMPILER__Test2_cpp_unscanned_Debug D$:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/HardBotSpieler.cpp || cmake_object_order_depends_target_Test2_cpp
+  DEP_FILE = CMakeFiles\Test2_cpp.dir\HardBotSpieler.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -ID:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/./SFML-2.6.2/include -isystem D:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/SFML-2.6.2/include
   OBJECT_DIR = CMakeFiles\Test2_cpp.dir
@@ -85,7 +92,7 @@ build CMakeFiles/Test2_cpp.dir/GUI.cpp.obj: CXX_COMPILER__Test2_cpp_unscanned_De
 #############################################
 # Link the executable Test2_cpp.exe
 
-build Test2_cpp.exe: CXX_EXECUTABLE_LINKER__Test2_cpp_Debug CMakeFiles/Test2_cpp.dir/main.cpp.obj CMakeFiles/Test2_cpp.dir/Game.cpp.obj CMakeFiles/Test2_cpp.dir/Bot.cpp.obj CMakeFiles/Test2_cpp.dir/GUI.cpp.obj | D$:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/SFML-2.6.2/lib/libsfml-graphics-d.a D$:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/SFML-2.6.2/lib/libsfml-window-d.a D$:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/SFML-2.6.2/lib/libsfml-system-d.a
+build Test2_cpp.exe: CXX_EXECUTABLE_LINKER__Test2_cpp_Debug CMakeFiles/Test2_cpp.dir/main.cpp.obj CMakeFiles/Test2_cpp.dir/MainMenue.cpp.obj CMakeFiles/Test2_cpp.dir/TicTacToeAnsicht.cpp.obj CMakeFiles/Test2_cpp.dir/NormalBotSpieler.cpp.obj CMakeFiles/Test2_cpp.dir/HardBotSpieler.cpp.obj | D$:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/SFML-2.6.2/lib/libsfml-graphics-d.a D$:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/SFML-2.6.2/lib/libsfml-window-d.a D$:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/SFML-2.6.2/lib/libsfml-system-d.a
   FLAGS = -g
   LINK_LIBRARIES = D:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/SFML-2.6.2/lib/libsfml-graphics-d.a  D:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/SFML-2.6.2/lib/libsfml-window-d.a  D:/Users/scsch/Desktop/Groﬂe_Projekte/Test2_cpp/SFML-2.6.2/lib/libsfml-system-d.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Test2_cpp.dir

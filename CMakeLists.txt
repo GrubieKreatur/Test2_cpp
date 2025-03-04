@@ -13,6 +13,15 @@ include_directories(./SFML-2.6.2/include)
 
 include_directories(${SFML_INCLUDE_DIR})
 
-add_executable(Test2_cpp main.cpp Game.cpp Bot.cpp GUI.cpp)
+add_executable(Test2_cpp main.cpp MainMenue.cpp
+        TicTacToeAnsicht.h
+        TicTacToeAnsicht.cpp
+        Spieler.h
+        MenschSpieler.h
+        EasyBotSpieler.h
+        NormalBotSpieler.cpp
+        HardBotSpieler.cpp
+        checkWin.h
+        GameFunktionen.h)
 
 target_link_libraries(Test2_cpp sfml-graphics sfml-window sfml-system)
