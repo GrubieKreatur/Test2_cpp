@@ -13,7 +13,7 @@ include_directories(./SFML-2.6.2/include)
 
 include_directories(${SFML_INCLUDE_DIR})
 
-add_executable(Test2_cpp main.cpp MainMenu.cpp eee
+add_executable(Test2_cpp main.cpp MainMenu.cpp
         TicTacToeView.cpp
         Player.h
         HumanPlayer.h
