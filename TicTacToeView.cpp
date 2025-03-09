@@ -1,20 +1,27 @@
 #include "TicTacToeView.h"
-#include <iostream>
 #include <string>
 #include "Player.h"
 #include "GameUtility.h"
 #include "MainMenu.h"
 
-TicTacToeView::TicTacToeView(sf::RenderWindow &window, sf::View &designView,sf::Font &font , Player *player1, Player *player2)
+/**
+ * Constructor for the TicTacToeView class.
+ * Initializes the game board, players, and window.
+ */
+TicTacToeView::TicTacToeView(sf::RenderWindow &window, sf::View &designView, sf::Font &font, Player *player1, Player *player2)
         : window(window), designView(designView), player1(player1), player2(player2), font(font) {
-    currentPlayer = 'X';
-    gameBoard = std::vector<std::vector<char>>(3, std::vector<char>(3, ' ')); // Empty Tic-Tac-Toe Board
-    winner = '-';
-
+    currentPlayer = 'X';  // X starts the game
+    gameBoard = std::vector<std::vector<char>>(3, std::vector<char>(3, ' ')); // Initialize empty Tic-Tac-Toe board
+    winner = '-'; // No winner at the start
 }
 
+/**
+ * Draws the Tic-Tac-Toe game interface and handles user interactions.
+ * @param pEvent Pointer to an SFML event to handle user input.
+ * @return A pointer to the updated menu.
+ */
 Menu *TicTacToeView::draw(sf::Event *pEvent) {
-    // Create Title
+    // Create title text
     sf::Text title("Tic-Tac-Toe", font, 75);
     sf::FloatRect textBoundsTitle = title.getLocalBounds();
     title.setOrigin(textBoundsTitle.left + textBoundsTitle.width / 2.0f,
@@ -22,43 +29,49 @@ Menu *TicTacToeView::draw(sf::Event *pEvent) {
     title.setPosition(960, 150);
     title.setFillColor(sf::Color::Black);
 
-    // Create Text for current player
+    // Create text to display the current player
     sf::Text currentPlayerText("Current Player: " + std::string(1, currentPlayer), font, 40);
     currentPlayerText.setPosition(660, 250);
     currentPlayerText.setFillColor(sf::Color::Black);
 
-    //
+    // Create "Back to Menu" button
     sf::Text backToMainMenuButton("Back to Menu", font, 40);
     backToMainMenuButton.setPosition(1020, 1000);
     backToMainMenuButton.setFillColor(sf::Color::Black);
 
+    // Handle mouse click events
     if (pEvent->type == sf::Event::MouseButtonPressed) {
         if (isMouseOver(&backToMainMenuButton)) {
-            pEvent->type = sf::Event::Count;
-            return new MainMenu(window, designView,font);
+            pEvent->type = sf::Event::Count; // Reset event type
+            return new MainMenu(window, designView, font);
         }
-
     }
 
-    if (winner == '-') {
+    // Handle player moves and check for a winner
+    if (winner == '-') {  // Continue the game if there is no winner
         if (currentPlayer == 'X') {
             if (player1->makeMove(gameBoard)) {
-                currentPlayer = 'O';
+                currentPlayer = 'O'; // Switch to the next player
             }
         } else if (currentPlayer == 'O') {
             if (player2->makeMove(gameBoard)) {
-                currentPlayer = 'X';
+                currentPlayer = 'X'; // Switch back to the first player
             }
-        } else {
-            std::cerr << "Error currentPlayer is: " << currentPlayer << std::endl;
         }
+
+        // Check if the game board is full
         if (gameBoardFull()) {
-            winner = 'u';
+            winner = 'u'; // 'u' indicates a draw
         }
-        winner = GameFunktionen::checkWin(gameBoard);
+
+        // Check if there is a winner
+        char tempWinner = GameFunktionen::checkWin(gameBoard);
+        if(tempWinner=='X'||tempWinner=='O'){
+            winner= tempWinner;
+        }
     }
 
-    // Draw the Tic-Tac-Toe grid
+    // Draw the Tic-Tac-Toe grid and symbols
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
             // Create a rectangle for each cell in the grid
@@ -68,7 +81,7 @@ Menu *TicTacToeView::draw(sf::Event *pEvent) {
             cell.setOutlineThickness(4);
             cell.setFillColor(sf::Color::White);
 
-            // Draw 'X' or 'O' if the cell is not empty
+            // Display 'X' or 'O' in the cell if it is occupied
             sf::Text cellText(std::string(1, gameBoard[i][j]), font, 60);
             cellText.setPosition(660 + j * 200 + 70, 350 + i * 200 + 60);
             cellText.setFillColor(sf::Color::Black);
@@ -77,10 +90,13 @@ Menu *TicTacToeView::draw(sf::Event *pEvent) {
             window.draw(cellText);
         }
     }
+
+    // If the game has a winner or is a draw, display the winner text
     if (winner == 'X' || winner == 'O' || winner == 'u') {
         drawWinnerDisplayText();
     }
 
+    // Draw all UI elements
     window.draw(currentPlayerText);
     window.draw(title);
     window.draw(backToMainMenuButton);
@@ -88,22 +104,28 @@ Menu *TicTacToeView::draw(sf::Event *pEvent) {
     return this;
 }
 
+/**
+ * Checks if the mouse cursor is over a given text button.
+ * @param textButton Pointer to the text button.
+ * @return True if the mouse is over the button, otherwise false.
+ */
 bool TicTacToeView::isMouseOver(sf::Text *textButton) {
-    // Mausposition in Weltkoordinaten umwandeln
+    // Convert mouse position to world coordinates
     sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
     sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos, designView);
-    // Umgewandelte positionen uberprufen
-    bool mouseOver = textButton->getGlobalBounds().contains(worldPos.x, worldPos.y);
 
-
-    return mouseOver;
+    // Check if the transformed mouse position is inside the button bounds
+    return textButton->getGlobalBounds().contains(worldPos.x, worldPos.y);
 }
 
+/**
+ * Checks if the Tic-Tac-Toe game board is full.
+ * @return True if the board is full, otherwise false.
+ */
 bool TicTacToeView::gameBoardFull() {
     for (int row = 0; row < 3; ++row) {
         for (int col = 0; col < 3; ++col) {
-            if (gameBoard[row][col] == ' ') {
-                std::cout << row << col << std::endl;
+            if (gameBoard[row][col] == ' ') { // If an empty space is found, the board is not full
                 return false;
             }
         }
@@ -111,33 +133,37 @@ bool TicTacToeView::gameBoardFull() {
     return true;
 }
 
+/**
+ * Displays the winner message on the screen.
+ */
 void TicTacToeView::drawWinnerDisplayText() {
     sf::Text winnerDisplayText;
+
+    // Set winner text depending on game result
     if (winner == 'X' || winner == 'O') {
-        winnerDisplayText = sf::Text("Player : " + std::string(1, winner) + " Wins!", font, 80);
+        winnerDisplayText = sf::Text("Player: " + std::string(1, winner) + " Wins!", font, 80);
     } else {
-        winnerDisplayText = sf::Text("Draw no one wins!", font, 80);
+        winnerDisplayText = sf::Text("Draw! No one wins!", font, 80);
     }
+
+    // Center the text on the screen
     sf::FloatRect winnerDisplayTextBound = winnerDisplayText.getLocalBounds();
     winnerDisplayText.setOrigin(winnerDisplayTextBound.left + winnerDisplayTextBound.width / 2.0f,
                                 winnerDisplayTextBound.top + winnerDisplayTextBound.height / 2.0f);
     winnerDisplayText.setPosition(960, 540);
     winnerDisplayText.setFillColor(sf::Color::Black);
 
+    // Create background rectangle behind the winner text
     sf::RectangleShape background;
     background.setSize(sf::Vector2f(winnerDisplayText.getLocalBounds().width + 10,
                                     winnerDisplayText.getLocalBounds().height + 10));
     sf::FloatRect backgroundBound = background.getLocalBounds();
     background.setOrigin(backgroundBound.left + backgroundBound.width / 2.0f,
                          backgroundBound.top + backgroundBound.height / 2.0f);
-    winnerDisplayText.setPosition(960, 540);
     background.setPosition(winnerDisplayText.getPosition().x - 5, winnerDisplayText.getPosition().y - 5);
     background.setFillColor(sf::Color::White);
+
+    // Draw the background and winner text
     window.draw(background);
     window.draw(winnerDisplayText);
-    if (winner == 'X' || winner == 'O') {
-        sf::Text("Player : " + std::string(1, winner) + " Wins!", font, 80);
-    } else {
-        sf::Text("Draw no one wins!", font, 80);
-    }
 }
