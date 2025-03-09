@@ -1,10 +1,10 @@
-#include "EasyBotSpieler.h"
-#include "NormalBotSpieler.h"
-#include "GameFunktionen.h"
+#include "EasyBotPlayer.h"
+#include "NormalBotPlayer.h"
+#include "GameUtility.h"
 
-NormalBotSpieler::NormalBotSpieler(char symbol) : Spieler(symbol) {}
+NormalBotPlayer::NormalBotPlayer(char symbol) : Player(symbol) {}
 
-bool NormalBotSpieler::makeMove(std::vector<std::vector<char>>& gameBoard) {
+bool NormalBotPlayer::makeMove(std::vector<std::vector<char>>& gameBoard) {
     // Einfache Logik, um zu verhindern, dass der Gegner gewinnt
     char gegnerSymbol =  (symbol == 'X') ? 'O' : 'X';
     for (int row = 0; row < 3; ++row) {
@@ -25,5 +25,5 @@ bool NormalBotSpieler::makeMove(std::vector<std::vector<char>>& gameBoard) {
     }
 
     // Falls keine Gefahr erkannt wird einen zufälligen Zug gemacht
-    return EasyBot(symbol).makeMove(gameBoard);
+    return EasyBotPlayer(symbol).makeMove(gameBoard);
 }
