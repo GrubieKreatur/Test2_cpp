@@ -6,7 +6,7 @@
 
 /**
  * Constructor for the TicTacToeView class.
- * Initializes the game board, players, and window.
+ * Initializes the game board and window.
  */
 TicTacToeView::TicTacToeView(sf::RenderWindow &window, sf::View &designView, sf::Font &font, Player *player1, Player *player2)
         : window(window), designView(designView), player1(player1), player2(player2), font(font) {
@@ -72,14 +72,14 @@ Menu *TicTacToeView::draw(sf::Event *pEvent) {
     }
 
     // Draw the Tic-Tac-Toe grid and symbols
+    sf::RectangleShape cell(sf::Vector2f(200, 200));
+    cell.setOutlineColor(sf::Color::Black);
+    cell.setOutlineThickness(4);
+    cell.setFillColor(sf::Color::White);
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
             // Create a rectangle for each cell in the grid
-            sf::RectangleShape cell(sf::Vector2f(200, 200));
             cell.setPosition(660 + j * 200, 350 + i * 200);
-            cell.setOutlineColor(sf::Color::Black);
-            cell.setOutlineThickness(4);
-            cell.setFillColor(sf::Color::White);
 
             // Display 'X' or 'O' in the cell if it is occupied
             sf::Text cellText(std::string(1, gameBoard[i][j]), font, 60);

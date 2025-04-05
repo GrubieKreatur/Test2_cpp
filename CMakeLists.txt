@@ -1,6 +1,6 @@
 
 
-# Pfad zur SFML-Installation
+# Pfad to SFML-Installation
 set(SFML_DIR "${CMAKE_SOURCE_DIR}/SFML-2.6.2/lib/cmake/SFML")
 
 # CMakeLists.txt
@@ -23,3 +23,4 @@ add_executable(Test2_cpp main.cpp MainMenu.cpp
         GameUtility.h)
 
 target_link_libraries(Test2_cpp sfml-graphics sfml-window sfml-system)
+target_link_options(Test2_cpp PRIVATE "-mwindows")

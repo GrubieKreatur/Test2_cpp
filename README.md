@@ -1,21 +1,21 @@
-# Test2_cpp
-# Test2_cpp
+# TicTacToe_cpp
+# TicTacToe_cpp
 
 ## Overview
 
-Test2_cpp is a C++ project that implements a Tic-Tac-Toe game featuring multiple player types:
-
-- **Human Player**: Allows a human to play the game.
-- **Easy Bot Player**: A bot with basic decision-making capabilities.
-- **Normal Bot Player**: A bot with intermediate strategies.
-- **Hard Bot Player**: A bot with advanced tactics for challenging gameplay.
-
-The game includes a main menu for navigation and a graphical interface for an enhanced user experience.
+TicTacToe_cpp is a C++ project designed to demonstrate core algorithmic concepts and graphics integration. The project primarily implements a minimax algorithm to address decision-making problems and utilizes the SFML library for multimedia and graphical functionalities. This project serves as a foundation for exploring game logic, AI strategies, and real-time graphics in C++.
 
 ## Features
+The project features several distinct game modes, allowing players to choose the style of play that best suits them:
 
-- **Multiple Difficulty Levels**: Choose from Easy, Normal, or Hard bot opponents.
-- **Human vs. Bot Gameplay**: Play against the computer at various difficulty settings.
+- **Human vs. Human:**  
+  Two players take turns playing on the same computer. This mode is ideal for local multiplayer sessions where players can directly compete against each other.
+
+- **Human vs. Computer:**  
+  In this mode, the player faces off against an AI opponent. Play against the computer at various difficulty settings.
+   - **Easy Bot Player**: A bot with random decision-making capabilities.
+  - **Normal Bot Player**: A bot with basic strategies.
+  - **Hard Bot Player**: A bot with advanced tactics for challenging gameplay.
 - **Graphical User Interface**: Enjoy a visual representation of the game board and interactions.
 
 ## Requirements
@@ -27,52 +27,22 @@ The game includes a main menu for navigation and a graphical interface for an en
 
 If you don't want to compile the project yourself, a precompiled version is available as a ZIP archive named TicTacToe.zip. This version is only available for Windows. You can simply download and extract it to play the game without additional setup.
 
-## Setup Instructions
-
-1. **Clone the Repository**:
-
-   ```bash
-   git clone https://github.com/GrubieKreatur/Test2_cpp.git
-   ```
-
-2. **Navigate to the Project Directory**:
-
-   ```bash
-   cd Test2_cpp
-   ```
-
-3. **Install SFML**:
-
-    - For Debian-based systems:
-      ```bash
-      sudo apt-get install libsfml-dev
-      ```
-    - For other systems, refer to the [SFML installation guide](https://www.sfml-dev.org/tutorials/2.6/start/index.php).
-
-4. **Build the Project Using CMake**:
-
-   ```bash
-   mkdir build
-   cd build
-   cmake ..
-   make
-   ```
-
-5. **Run the Executable**:
-
-   ```bash
-   ./Test2_cpp
-   ```
-
 ## Usage
 
 - Upon launching the game, use the main menu to select the desired game mode.
 - Follow on-screen prompts to play the game.
-- Enjoy playing Tic-Tac-Toe against various levels of AI opponents.
+- Enjoy playing Tic-Tac-Toe.
 
-## Contributing
+## Third-Party Contributions
 
-Contributions are welcome! Please fork the repository and create a pull request with your enhancements or bug fixes.
+This project was built with the assistance of several external resources:
+
+- [Minimax Algorithm Explanation by NeverStopBuilding](https://www.neverstopbuilding.com/blog/minimax) – Provided an in-depth explanation and practical guidance on implementing the minimax algorithm.
+- **SFML Documentation:**  
+  Essential for integrating and handling graphics, windowing, and multimedia functionalities in the project.
+- **GitHub Forums:**  
+  Community discussions and troubleshooting on GitHub forums offered valuable insights throughout the development process.
+
 
 ## License
 

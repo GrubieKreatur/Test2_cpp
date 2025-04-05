@@ -17,7 +17,7 @@ public:
      *
      * @param symbol The symbol for the bot ('X' or 'O').
      */
-    EasyBotPlayer(char symbol) : Player(symbol) {
+    explicit EasyBotPlayer(char symbol) : Player(symbol) {
         srand(time(0));  // Initialize the random number generator
     }
 

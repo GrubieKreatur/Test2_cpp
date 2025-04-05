@@ -19,10 +19,10 @@ public:
      *
      * @param symbol The symbol assigned to the player (either 'X' or 'O').
      */
-    Player(char symbol) : symbol(symbol) {}
+    explicit Player(char symbol) : symbol(symbol) {}
 
     // Virtual destructor to ensure proper cleanup of derived classes.
-    virtual ~Player() {}
+    virtual ~Player() = default;
 
     /**
      * @brief An abstract method for making a move.

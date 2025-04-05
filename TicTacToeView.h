@@ -30,8 +30,14 @@ public:
 
     // Destructor that deletes the player objects to prevent memory leaks.
     ~TicTacToeView() {
-        delete player1;
-        delete player2;
+        if (player1 != nullptr) {
+            delete player1;
+            player1 = nullptr;
+        }
+        if (player2 != nullptr) {
+            delete player2;
+            player2 = nullptr;
+        }
     }
 
     /**

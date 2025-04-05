@@ -48,7 +48,7 @@ void setupView() {
     m_designView.setCenter(DESIGN_WIDTH / 2, DESIGN_HEIGHT / 2);
 
     // Load font from file
-    if (!font.loadFromFile("Arial.ttf")) {
+    if (!font.loadFromFile("./assets/Arial.ttf")) {
         exit(-1); // Exit if font loading fails
     }
 
@@ -63,7 +63,7 @@ void setupView() {
  */
 void run() {
     while (m_window.isOpen()) {
-        sf::Event event;
+        sf::Event event{};
 
         // Check for events
         if (m_window.pollEvent(event)) {
